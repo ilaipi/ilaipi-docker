@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  blog:
+    image: wordpress:latest
+    volumes:
+      - /data/wordpress/blogdb:/var/www/html
+    ports:
+      - "63380:80"
+    restart: always
+    privileged: true
+    environment:
+      # 可以直接使用 上方 service 名 + 端口来获得链接
+      WORDPRESS_DB_HOST: blogdb:3306
+      WORDPRESS_DB_NAME: blogdb
+      WORDPRESS_DB_USER: blogdb
+      WORDPRESS_DB_PASSWORD: blogdb
+      # 定义域名
+      WORDPRESS_CONFIG_EXTRA: "define('WP_HOME','https://www.ilaipi.top'); define('WP_SITEURL','https://www.ilaipi.top');"
+    networks:
+      - blogdb
+networks:
+  blogdb:
+    external:
+      name: blogdb
