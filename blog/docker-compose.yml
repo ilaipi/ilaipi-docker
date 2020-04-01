@@ -14,10 +14,10 @@ services:
       MYSQL_DATABASE: blogdb
       MYSQL_USER: blogdb
       MYSQL_PASSWORD: blogdb
-     networks:
-       blog_net:
-         aliases:
-           - blogdb
+    networks:
+      blog_net:
+        aliases:
+          - blogdb
   blog:
     image: wordpress:latest
     container_name: blog_ilaipi
