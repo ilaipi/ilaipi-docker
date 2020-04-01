@@ -16,7 +16,7 @@ services:
         - "443:443"
      restart: always
      networks:
-        - nginx_net
+        - blog_net
    acme-ilaipi:
      image: neilpang/acme.sh
      container_name: acme-ilaipi
@@ -35,5 +35,6 @@ services:
      restart: always
 
 networks:
-  nginx_net:
-    name: nginx_net
+  blog_net:
+    external:
+      name: blog_net
