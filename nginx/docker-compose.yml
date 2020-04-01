@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+   nginx:
+     image: nginx:stable-alpine
+     container_name: nginx
+     volumes:
+        - ./nginx.conf:/etc/nginx/nginx.conf
+        - ./ssl_params:/etc/nginx/ssl_params
+        - /data/nginx/sites-enabled:/etc/nginx/sites-enabled
+        - /data/nginx/ssl:/etc/nginx/ssl
+        - /data/nginx/log:/var/log/nginx
+     ports:
+        - "80:80"
+        - "443:443"
+     restart: always
+   acme-ilaipi:
+     image: neilpang/acme.sh
+     container_name: acme-ilaipi
+     network_mode: "host"
+     command: ["daemon"]
+     volumes:
+        - /data/nginx/acme.sh-ilaipi:/acme.sh
+        - /data/nginx/ssl:/etc/nginx/ssl
+     environment:
+        - "Ali_Key=${ILAIPI_ALI_KEY}"
+        - "Ali_Secret=${ILAIPI_ALI_SECRET}"
+        - "MAILGUN_API_KEY=${MAILGUN_API_KEY}"
+        - "MAILGUN_API_DOMAIN=${MAILGUN_API_DOMAIN}"
+        - "MAILGUN_FROM=${MAILGUN_FROM}"
+        - "MAILGUN_TO=${MAILGUN_TO}"
+     restart: always
