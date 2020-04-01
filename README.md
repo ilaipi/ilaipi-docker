@@ -9,5 +9,28 @@
 | volkswagen-helper db |  55003 | mongodb |
 
 
+## Deploy
+
+部署服务：nginx，博客(wordpress/mysql)
+
+
 
 ## Blog
+
+```bash
+cd blog && docker-compose up -d blog
+```
+
+## nginx
+
+```bash
+cd nginx && docker-compose up -d nginx
+```
+
+Tips: before up nginx, should issue and install the certificate by acme
+
+## acme
+
+```bash
+# domain: *.ilaipi.top
+```

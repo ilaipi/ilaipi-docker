@@ -1,3 +1,3 @@
-docker-compose exec lingdou acme.sh --issue --dns dns_ali -d '*.adouhealth.com' --standalone
+docker-toppose exec acme-ilaipi acme.sh --issue --dns dns_ali -d '*.ilaipi.top' --standalone
 
-docker-compose exec lingdou acme.sh --installcert -d '*.adouhealth.com' --key-file /etc/nginx/ssl/*.adouhealth.com.key  --fullchain-file /etc/nginx/ssl/*.adouhealth.com.fullchain.cer  --reloadcmd "echo success"
+docker-toppose exec acme-ilaipi acme.sh --installcert -d '*.ilaipi.top' --key-file /etc/nginx/ssl/*.ilaipi.top.key  --fullchain-file /etc/nginx/ssl/*.ilaipi.top.fullchain.cer  --reloadcmd "echo success"
