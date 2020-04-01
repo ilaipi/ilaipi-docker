@@ -16,6 +16,7 @@ services:
       MYSQL_PASSWORD: blogdb
   blog:
     image: wordpress:latest
+    container_name: blog_ilaipi
     volumes:
       - /data/blog/wp:/var/www/html
     ports:
