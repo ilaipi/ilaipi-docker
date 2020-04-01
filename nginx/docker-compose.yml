@@ -8,13 +8,15 @@ services:
         - ./nginx.conf:/etc/nginx/nginx.conf
         - ./ssl_params:/etc/nginx/ssl_params
         - ./proxy_params:/etc/nginx/proxy_params
-        - /data/nginx/sites-enabled:/etc/nginx/sites-enabled
+        - ./sites-enabled:/etc/nginx/sites-enabled
         - /data/nginx/ssl:/etc/nginx/ssl
         - /data/nginx/log:/var/log/nginx
      ports:
         - "80:80"
         - "443:443"
      restart: always
+     networks:
+        - nginx_net
    acme-ilaipi:
      image: neilpang/acme.sh
      container_name: acme-ilaipi
@@ -31,3 +33,7 @@ services:
         - "MAILGUN_FROM=${MAILGUN_FROM}"
         - "MAILGUN_TO=${MAILGUN_TO}"
      restart: always
+
+networks:
+  nginx_net:
+    name: nginx_net

@@ -33,3 +33,12 @@ services:
       WORDPRESS_DB_PASSWORD: blogdb
       # 定义域名
       WORDPRESS_CONFIG_EXTRA: "define('WP_HOME','https://www.ilaipi.top'); define('WP_SITEURL','https://www.ilaipi.top');"
+    networks:
+      nginx_net:
+        aliases:
+          - blog
+
+networks:
+  nginx_net:
+    external:
+      name: nginx_net
