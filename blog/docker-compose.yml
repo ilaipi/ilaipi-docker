@@ -5,9 +5,9 @@ services:
     image: mysql:5.7
     container_name: blog_db
     volumes: # 数据卷，映射本地文件夹
-      - /data/mysql/blogdb:/var/lib/mysql
+      - /data/blog/mysql:/var/lib/mysql
     ports: # 如果不写端口映射的话，外部无法连接该mysql（下方WordPress连接没问题）
-      - "63018:3306"
+      - "55001:3306"
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: "Xeroxes6136;cobras"
@@ -17,9 +17,9 @@ services:
   blog:
     image: wordpress:latest
     volumes:
-      - /data/wordpress/blogdb:/var/www/html
+      - /data/blog/wp:/var/www/html
     ports:
-      - "63380:80"
+      - "55002:80"
     restart: always
     privileged: true
     environment:
