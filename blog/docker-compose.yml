@@ -21,6 +21,8 @@ services:
       - /data/blog/wp:/var/www/html
     ports:
       - "55002:80"
+    depends_on:
+      - db
     restart: always
     privileged: true
     environment:
