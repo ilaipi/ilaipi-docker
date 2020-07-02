@@ -33,4 +33,11 @@ Tips: before up nginx, should issue and install the certificate by acme
 
 ```bash
 # domain: *.ilaipi.top
+
+# update cert
+docker-compose exec acme-ilaipi acme.sh --issue --dns dns_ali -d '*.ilaipi.top' --standalone --force
+
+docker-compose exec acme-ilaipi acme.sh --installcert -d '*.ilaipi.top' --key-file /etc/nginx/ssl/*.ilaipi.top.key  --fullchain-file /etc/nginx/ssl/*.ilaipi.top.fullchain.cer  --reloadcmd "echo success"
+
+docker-compose exec nginx nginx -s reload
 ```
