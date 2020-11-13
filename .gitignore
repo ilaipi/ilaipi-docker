@@ -1,1 +1,3 @@
 ./ssh/*
+/jd_scripts/logs
+/**/.env
