@@ -41,3 +41,11 @@ docker-compose exec acme-ilaipi acme.sh --installcert -d '*.ilaipi.top' --key-fi
 
 docker-compose exec nginx nginx -s reload
 ```
+
+需要在系统自动任务中加入：
+
+```bash
+# 这里不能使用docker-compose  看日志这里有很多错误  所以直接使用docker命令来重新加载nginx
+# 1 0 1,15 * * cd /home/ilaipi-docker/nginx && /usr/local/bin/docker-compose up -d --build nginx && /usr/local/bin/docker-compose exec nginx nginx -s reload
+1 0 1,15 * * cd /path/to/nginx && docker exec -dit nginx nginx -s reload
+```
